@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Comment;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -10,7 +11,7 @@ class ArticleController extends Controller
     public function index()
     {
 //        $articles = DB::table('articles')->get();
-        $articles = Article::all();
+        $articles = Article::paginate(4);
         return view('article.index', compact('articles'));
     }
 
@@ -61,6 +62,13 @@ class ArticleController extends Controller
     {
 //        DB::table('articles')->delete($id);
         Article::destroy($id);
+        return back();
+    }
+
+    public function storeComment(Request $request, $articleId)
+    {
+        $article = Article::find($articleId)->comments()->create($request->all());
+        $article->save();
         return back();
     }
 }

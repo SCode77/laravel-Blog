@@ -8,10 +8,25 @@
     <title>Document</title>
 </head>
 <body>
-   Name: {{$article->title}}
-    <hr>
-   Body: {{$article->body}}
-    <hr>
-   Source: {{$article->source}}
+Name: {{$article->title}}
+<hr>
+Body: {{$article->body}}
+<hr>
+Source: {{$article->source}}
+
+<hr>
+<h4>Comments</h4>
+<h5>Your Comment</h5>
+<form action="../article/{{$article->id}}/comment" method="post">
+    @csrf
+    Name: <input type="text" autofocus name="author" id=""><br><br>
+    Comment: <textarea name="body" id="" cols="30" rows="10"></textarea><br><br>
+    <input type="submit">
+</form>
+
+<hr>
+@foreach($article->comments as $comment)
+    <strong style="color: forestgreen">{{$comment->author}}:</strong> {{$comment->body}}<br>
+@endforeach
 </body>
 </html>

@@ -8,21 +8,36 @@
     <title>Document</title>
 </head>
 <body>
-    <h3><a style="color: whitesmoke" href="article/create">Create Article</a></h3>
-    <table>
-        @foreach($articles as $article)
+<h3><a style="color: whitesmoke" href="article/create">Create Article</a></h3>
+<table>
+    @foreach($articles as $article)
         <tr>
             <td>{{$article->id}}</td>
             <td><a href="article/{{$article->id}}">{{$article->title}}</a></td>
             <td>{{$article->body}}</td>
-            <td><a href="article/{{$article->id}}/edit"><button>Edit</button></a></td>
-            <td><form action="article/{{$article->id}}" method="post">
-                @method('delete')
-                @csrf
-                <button type="submit">Delete</button>
-            </form></td>
+            <td><a href="article/{{$article->id}}/edit">
+                    <button>Edit</button>
+                </a></td>
+            <td>
+                <form action="article/{{$article->id}}" method="post">
+                    @method('delete')
+                    @csrf
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
         </tr>
-        @endforeach
-    </table>
+    @endforeach
+</table>
+{{$articles->links()}}
+<style>
+    .pagination {
+        list-style: none;
+    }
+
+    .pagination li {
+        float: left;
+        margin: 5px;
+    }
+</style>
 </body>
 </html>

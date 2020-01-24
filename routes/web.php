@@ -29,4 +29,5 @@ Route::group(['prefix' => 'article'],function(){
     Route::get('{id}/edit','ArticleController@edit');
     Route::put('{id}','ArticleController@update');
     Route::delete('{id}','ArticleController@destroy');
+    Route::post('{id}/comment','ArticleController@storeComment');
 });
