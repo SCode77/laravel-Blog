@@ -8,7 +8,8 @@
     <title>Document</title>
 </head>
 <body>
-<form action="../{{$article->id}}" method="post">
+<img src="../../images/{{$article->image}}" alt="{{$article->image}}"><br>
+<form action="../{{$article->id}}" method="post" enctype="multipart/form-data">
     @csrf
     @method('put')
     Title: <input type="text" autofocus name="title" value="{{$article->title}}"><br><br>
@@ -19,6 +20,7 @@
             <option @if($article->hasCategory($category->id)) selected @endif value="{{$category->id}}">{{$category->name}}</option>
         @endforeach
     </select><br><br>
+    Image: <input type="file" name="image" id="image" accept="image/*" ><br><br>
     <input type="submit">
 </form>
 </body>

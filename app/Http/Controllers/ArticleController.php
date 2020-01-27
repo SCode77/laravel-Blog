@@ -11,7 +11,7 @@ class ArticleController extends Controller
     public function index()
     {
 //        $articles = DB::table('articles')->get();
-        $articles = Article::paginate(4);
+        $articles = Article::orderBy('id', 'DESC')->paginate(4);
         return view('article.index', compact('articles'));
     }
 
@@ -38,6 +38,16 @@ class ArticleController extends Controller
         $article = new Article($request->all());
         $article->save();
         $article->categories()->sync($request->categories);
+
+        if ($request->file('image') != null) {
+            $name = 'article-' . $article->id . '.' . $request->file('image')->getClientOriginalExtension();
+            $path = public_path("images\\");
+            if (is_file($path . $article->image))
+                unlink($path . $article->image);
+            $request->file('image')->move($path, $name);
+            $article->image = $name;
+            $article->save();
+        }
         return redirect('');
     }
 
@@ -57,15 +67,29 @@ class ArticleController extends Controller
 //                'body' => $request->body,
 //                'source' => $request->source
 //            ]);
-        Article::find($id)->update($request->all());
+        $article = Article::find($id);
+        $article->update($request->all());
         Article::find($id)->categories()->sync($request->categories);
+        if ($request->file('image') != null) {
+            $name = 'article-' . $article->id . '.' . $request->file('image')->getClientOriginalExtension();
+            $path = public_path("images\\");
+            if (is_file($path . $article->image))
+                unlink($path . $article->image);
+            $request->file('image')->move($path, $name);
+            $article->image = $name;
+            $article->save();
+        }
         return redirect('');
     }
 
     public function destroy($id)
     {
 //        DB::table('articles')->delete($id);
+        $image = public_path("images\\");
+        $image .= Article::find($id)->image;
         Article::destroy($id);
+        if (is_file($image))
+            unlink($image);
         return back();
     }
 

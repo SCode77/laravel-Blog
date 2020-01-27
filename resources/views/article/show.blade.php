@@ -8,6 +8,8 @@
     <title>Document</title>
 </head>
 <body>
+<img src="../images/{{$article->image}}" alt="{{$article->image}}"><br>
+<hr>
 Name: {{$article->title}}
 <hr>
 Body: {{$article->body}}
@@ -30,7 +32,6 @@ Source: {{$article->source}}
     Comment: <textarea name="body" id="" cols="30" rows="10"></textarea><br><br>
     <input type="submit">
 </form>
-
 <hr>
 @foreach($article->comments as $comment)
     <strong style="color: forestgreen">{{$comment->author}}:</strong> {{$comment->body}}<br>

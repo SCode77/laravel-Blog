@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-<form action="../article" method="post">
+<form action="../article" method="post" enctype="multipart/form-data">
     @csrf
     Title: <input type="text" autofocus name="title"><br><br>
     Body: <textarea name="body" cols="30" rows="10"></textarea><br><br>
@@ -18,6 +18,7 @@
             <option value="{{$category->id}}">{{$category->name}}</option>
         @endforeach
     </select><br><br>
+    Image: <input type="file" name="image" id="image" accept="image/*" >
     <input type="submit">
 </form>
 </body>
