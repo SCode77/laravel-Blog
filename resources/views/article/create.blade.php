@@ -13,6 +13,11 @@
     Title: <input type="text" autofocus name="title"><br><br>
     Body: <textarea name="body" cols="30" rows="10"></textarea><br><br>
     Source: <input type="text" name="source"><br><br>
+    Category: <select name="categories[]" multiple id="">
+        @foreach($categories as $category)
+            <option value="{{$category->id}}">{{$category->name}}</option>
+        @endforeach
+    </select><br><br>
     <input type="submit">
 </form>
 </body>

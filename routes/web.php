@@ -15,7 +15,7 @@ Route::get('/','PageController@index');
 Route::get('welcome','PageController@welcome');
 Route::get('about','PageController@about');
 Route::get('user/{id}','UserController@showUser');
-Route::post('newsletter','NewsletterController@store');
+Route::post('newsletter',['as' => 'newsLetter.store'],'NewsletterController@store');
 
 Route::get('musers/{mId}',function ($id){
     return "WElcome to new Test^__^ $id";
@@ -31,3 +31,9 @@ Route::group(['prefix' => 'article'],function(){
     Route::delete('{id}','ArticleController@destroy');
     Route::post('{id}/comment','ArticleController@storeComment');
 });
+
+Route::resource('category','CategoryController',[
+    'except' =>
+        [
+            'show'
+        ]]);

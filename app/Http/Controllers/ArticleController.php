@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
-use App\Comment;
+use App\Category;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -24,7 +24,8 @@ class ArticleController extends Controller
 
     public function create()
     {
-        return view('article.create');
+        $categories = Category::all();
+        return view('article.create', compact('categories'));
     }
 
     public function store(Request $request)
@@ -36,6 +37,7 @@ class ArticleController extends Controller
 //        ]);
         $article = new Article($request->all());
         $article->save();
+        $article->categories()->sync($request->categories);
         return redirect('');
     }
 
@@ -43,7 +45,8 @@ class ArticleController extends Controller
     {
 //        $article = DB::table('articles')->find($id);
         $article = Article::find($id);
-        return view('article.edit', compact('article'));
+        $categories = Category::all();
+        return view('article.edit', compact('article', 'categories'));
     }
 
     public function update(Request $request, $id)
@@ -55,6 +58,7 @@ class ArticleController extends Controller
 //                'source' => $request->source
 //            ]);
         Article::find($id)->update($request->all());
+        Article::find($id)->categories()->sync($request->categories);
         return redirect('');
     }
 
