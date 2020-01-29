@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-<img src="../images/{{$article->image}}" alt="{{$article->image}}"><br>
+<img width="50%" height="50%" src="../images/{{$article->image}}" alt="{{$article->image}}"><br>
 <hr>
 Name: {{$article->title}}
 <hr>
@@ -26,7 +26,7 @@ Source: {{$article->source}}
 <hr>
 <h4>Comments</h4>
 <h5>Your Comment</h5>
-<form action="../article/{{$article->id}}/comment" method="post">
+<form action="{{route('article.comment',$article->id)}}" method="post">
     @csrf
     Name: <input type="text" autofocus name="author" id=""><br><br>
     Comment: <textarea name="body" id="" cols="30" rows="10"></textarea><br><br>

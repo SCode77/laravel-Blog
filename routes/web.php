@@ -18,10 +18,10 @@ Route::get('user/{id}','UserController@showUser');
 Route::post('newsletter',['as' => 'newsLetter.store'],'NewsletterController@store');
 
 Route::get('musers/{mId}',function ($id){
-    return "WElcome to new Test^__^ $id";
+    return "WElcom3 to new Test ^__^ $id";
 })->where(['mId' => '[a-d]']);
 
-Route::group(['prefix' => 'article'],function(){
+/*Route::group(['prefix' => 'article'],function(){
     Route::get('','ArticleController@index');
     Route::get('create','ArticleController@create');
     Route::get('{id}','ArticleController@show');
@@ -29,8 +29,9 @@ Route::group(['prefix' => 'article'],function(){
     Route::get('{id}/edit','ArticleController@edit');
     Route::put('{id}','ArticleController@update');
     Route::delete('{id}','ArticleController@destroy');
-    Route::post('{id}/comment','ArticleController@storeComment');
-});
+});*/
+Route::resource('article','ArticleController');
+Route::post('article/{id}/comment', 'ArticleController@storeComment')->name('article.comment');
 
 Route::resource('category','CategoryController',[
     'except' =>
@@ -41,3 +42,4 @@ Route::resource('category','CategoryController',[
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
