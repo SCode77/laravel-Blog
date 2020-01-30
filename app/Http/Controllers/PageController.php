@@ -86,4 +86,23 @@ class PageController extends Controller
             Session::flash('server-message', 'Your Product saved successfully ☺');
         return back();
     }
+
+    public function testLayout()
+    {
+        return view('test0');
+    }
+
+    public function testLayout1()
+    {
+        return view('test1');
+    }
+    public function testLayout2()
+    {
+        return view('test2');
+    }
+    public function testLayout3()
+    {
+        return view('test3');
+    }
+
 }

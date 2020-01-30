@@ -29,6 +29,7 @@
     @endforeach
 </table>
 {{$articles->links()}}<br>
+{{--{{$articles->render()}}<br>--}}
 <h4><a style="color: whitesmoke" href="category">Categories</a></h4>
 
 <style>

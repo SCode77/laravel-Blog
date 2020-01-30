@@ -14,13 +14,13 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/','PageController@index');
-Route::get('welcome','PageController@welcome');
-Route::get('about','PageController@about');
-Route::get('user/{id}','UserController@showUser');
-Route::post('newsletter',['as' => 'newsLetter.store'],'NewsletterController@store');
+Route::get('/', 'PageController@index');
+Route::get('welcome', 'PageController@welcome');
+Route::get('about', 'PageController@about');
+Route::get('user/{id}', 'UserController@showUser');
+Route::post('newsletter', ['as' => 'newsLetter.store'], 'NewsletterController@store');
 
-Route::get('musers/{mId}',function ($id){
+Route::get('musers/{mId}', function ($id) {
     return "WElcom3 to new Test ^__^ $id";
 })->where(['mId' => '[a-d]']);
 
@@ -33,10 +33,10 @@ Route::get('musers/{mId}',function ($id){
     Route::put('{id}','ArticleController@update');
     Route::delete('{id}','ArticleController@destroy');
 });*/
-Route::resource('article','ArticleController');
+Route::resource('article', 'ArticleController');
 Route::post('article/{id}/comment', 'ArticleController@storeComment')->name('article.comment');
 
-Route::resource('category','CategoryController',[
+Route::resource('category', 'CategoryController', [
     'except' =>
         [
             'show'
@@ -46,15 +46,15 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('article/user/{id}',function ($id){
+Route::get('article/user/{id}', function ($id) {
     return $id;
 })->where(['id' => '[2-5]']);
 
-Route::get('article/name/{name}',function ($name){
+Route::get('article/name/{name}', function ($name) {
     return $name;
 })->where(['name' => '[c-e]']);
 
-Route::middleware('age')->post('sendAge', function(){
+Route::middleware('age')->post('sendAge', function () {
     return 'invalid age';
 });
 
@@ -67,5 +67,11 @@ Route::get('session5', 'PageController@session5');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('product','PageController@products');
-Route::post('product','PageController@submitProduct');
+
+Route::get('product', 'PageController@products');
+Route::post('product', 'PageController@submitProduct');
+
+Route::get('test', 'PageController@testLayout');
+Route::get('test1', 'PageController@testLayout1');
+Route::get('test2', 'PageController@testLayout2');
+Route::get('test3', 'PageController@testLayout3');
