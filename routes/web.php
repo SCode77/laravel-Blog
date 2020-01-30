@@ -57,3 +57,13 @@ Route::get('article/name/{name}',function ($name){
 Route::middleware('age')->post('sendAge', function(){
     return 'invalid age';
 });
+
+Route::get('session1', 'PageController@session1');
+Route::get('session2', 'PageController@session2');
+Route::get('session3', 'PageController@session3');
+Route::get('session4', 'PageController@session4');
+Route::get('session5', 'PageController@session5');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
