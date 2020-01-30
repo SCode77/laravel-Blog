@@ -17,7 +17,8 @@ class PageController extends Controller
             'age' => 17
         ];
 //        return  view('index',compact('user'));
-        return redirect('article');
+//        return redirect('article');
+        return view('age');
     }
 
     public function about()

@@ -11,6 +11,9 @@
 |
 */
 
+
+use Illuminate\Support\Facades\Route;
+
 Route::get('/','PageController@index');
 Route::get('welcome','PageController@welcome');
 Route::get('about','PageController@about');
@@ -43,3 +46,14 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('article/user/{id}',function ($id){
+    return $id;
+})->where(['id' => '[2-5]']);
+
+Route::get('article/name/{name}',function ($name){
+    return $name;
+})->where(['name' => '[c-e]']);
+
+Route::middleware('age')->post('sendAge', function(){
+    return 'invalid age';
+});
