@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-<h3><a style="color: whitesmoke" href="article/create">Create Article</a></h3>
+<h3><a style="color: whitesmoke" href="{{route('article.create')}}">Create Article</a></h3>
 <table>
     @foreach($articles as $article)
         <tr>

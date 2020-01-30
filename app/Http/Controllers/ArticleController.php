@@ -8,10 +8,13 @@ use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
 //        $articles = DB::table('articles')->get();
-        $articles = Article::orderBy('id', 'DESC')->paginate(4);
+        $articles = Article::orderBy('id', 'DESC');
+        if ($request->q)
+            $articles = $articles->where('title','LIKE','%'.$request->q.'%');
+        $articles = $articles->orderBy('id', 'DESC')->paginate(4)->appends('q',$request->q);
         return view('article.index', compact('articles'));
     }
 
