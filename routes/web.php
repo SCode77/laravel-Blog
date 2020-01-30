@@ -67,3 +67,5 @@ Route::get('session5', 'PageController@session5');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('product','PageController@products');
+Route::post('product','PageController@submitProduct');
