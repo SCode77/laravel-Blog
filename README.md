@@ -1,3 +1,55 @@
+## Used Terminal Commands
+<i>create page controller</i><br>
+<code>php artisan make:controller PageController</code><br><br>
+<i>create newsletter controller</i><br>
+<code>php artisan make:controller NewsletterController</code><br><br>
+<i>create article model</i><br>
+<code>php artisan make:model Article</code><br><br>
+<i>create migration to create articles table</i><br>
+<code>php artisan make:migration create_articles_table --create articles</code><br><br>
+<i>create migration to add source to the articles table</i><br>
+<code>php artisan make:migration add_source_to_articles_table --table articles</code><br><br>
+<i>create article controller as resource controller</i><br>
+<code>php artisan make:controller ArticleController -r</code><br><br>
+<i>create comment model with migration</i><br>
+<code>php artisan make:model Comment -m</code><br><br>
+<i>create category model with migration</i><br>
+<code>php artisan make:model Category -m</code><br><br>
+<i>create migration to create articles_to_categories table</i><br>
+<code>php artisan make:migration create_articles_to_categories_table</code><br><br>
+<i>create authentication pages and scaffolding (localhost:8000/home). needs to download some requirements from the internet.</i><br>
+<code>
+composer require laravel/ui</code> <br>
+<code>php artisan ui vue --auth
+</code><br><br>
+<i>create migration to add image column to the articles table</i><br>
+<code>php artisan make:migration add_image_to_articles_table --table articles</code><br><br>
+<i>create article controller in api folder</i><br>
+<code>php artisan make:controller api\ArticleController</code><br><br>
+<i>create age middleware</i><br>
+<code>php artisan make:middleware AgeMiddleware</code><br><br>
+<i>create sessions table</i><br>
+<code>php artisan session:table</code><br><code>composer dump-autoload</code><br><br>
+<i>create product model with migration</i><br>
+<code>php artisan make:model Product -m</code><br><br>
+
+
+
+<i>run all the created migrations (need to database connection)</i><br>
+<code>php artisan migrate</code><br><br>
+<i>rollback the all migrations (need to database connection)</i><br>
+<code>php artisan migrate:rollback</code><br><br>
+<i>rolling back migration with steps(1: the last migration, 2: last 2 migration, etc)</i><br>
+<code>php artisan migrate:rollback --step 1</code><br><br>
+<i>show routes with details</i><br>
+<code>php artisan route:list</code><br><br>
+<i>run php code in terminal</i><br>
+<code>php artisan tinker</code><br><br>
+
+<i>start server</i><br>
+<code>php artisan serve</code><br><br>
+
+<hr>
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">
